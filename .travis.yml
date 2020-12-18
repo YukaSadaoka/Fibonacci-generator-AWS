@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t yuka/fibonacci-test -f ./client/Dockerfile.dev ./client
+  - docker build -t yukasadaoka/fibonacci-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run -e CI=true yuka/fibonacci-test npm test
+  - docker run -e CI=true yukasadaoka/fibonacci-test npm test
 
 after_success:
-  - docker build -t yuka/fibonacci-client ./client
-  - docker build -t yuka/fibonacci-nginx ./nginx
-  - docker build -t yuka/fibonacci-server ./server
-  - docker build -t yuka/fibonacci-worker ./worker
+  - docker build -t yukasadaoka/fibonacci-client ./client
+  - docker build -t yukasadaoka/fibonacci-nginx ./nginx
+  - docker build -t yukasadaoka/fibonacci-server ./server
+  - docker build -t yukasadaoka/fibonacci-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push yuka/fibonacci-client
-  - docker push yuka/fibonacci-nginx
-  - docker push yuka/fibonacci-server
-  - docker push yuka/fibonacci-worker
+  - docker push yukasadaoka/fibonacci-client
+  - docker push yukasadaoka/fibonacci-nginx
+  - docker push yukasadaoka/fibonacci-server
+  - docker push yukasadaoka/fibonacci-worker
